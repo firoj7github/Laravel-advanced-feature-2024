@@ -1,8 +1,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js" integrity="sha512-6S5LYNn3ZJCIm0f9L6BCerqFlQ4f5MwNKq+EthDXabtaJvg3TuFLhpno9pcm+5Ynm6jdA9xfpQoMz2fcjVMk9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    
 
     <script>
         $.ajaxSetup({
@@ -21,7 +20,7 @@
                console.log(name,price);
           
              $.ajax({
-                url:'{{route('add.product')}}',
+                url:"{{route('add.product')}}",
                 method:'post',
                 data:{name:name, price:price},
                 success:function(res){
@@ -59,7 +58,7 @@
                console.log(name,price);
           
              $.ajax({
-                url:'{{route('update.product')}}',
+                url:"{{route('update.product')}}",
                 method:'post',
                 data:{up_id:up_id,up_name:up_name, up_price:up_price},
                 success:function(res){
@@ -87,7 +86,7 @@
 
               if(confirm("if you delete the product??")){
                   $.ajax({
-                url:'{{route('delete.product')}}',
+                url:"{{route('delete.product')}}",
                 method:'post',
                 data:{product_id:product_id},
                 success:function(res){
@@ -107,5 +106,59 @@
           
             
             });
+
+            // Lead add two table insert with condition
+
+            $(document).on('click', '#lead_submit', function(e){
+               e.preventDefault();
+               let cus_name= $('#cus_name').val();
+               let email= $('#email').val();
+               let customer_id= $('#customer_id').val();
+               let lead_name= $('#lead').val();
+               let lead_type= $('#lead_type').val();
+              
+          
+             $.ajax({
+                url:"{{route('lead.add')}}",
+                type:'post',
+                data:{cus_name:cus_name, email:email,customer_id:customer_id, lead_name:lead_name, lead_type:lead_type  },
+                success:function(res){
+                    
+
+                  
+                    if (res.error) {
+                            
+                            if(res.error.cus_name)
+                            {
+                                $('.cus_name_error').text(res.error.cus_name);
+                            }
+                            if(res.error.email)
+                            {
+                                $('.cus_email_error').text(res.error.email);
+                            }
+                            if(res.error.lead_name)
+                            {
+                                $('.lead_error').text(res.error.lead_name);
+                            }
+                            if(res.error.lead_type)
+                            {
+                                $('.cus_lead_typel_error').text(res.error.lead_type);
+                            }
+                            
+                            
+                            
+                        } 
+
+                }, error: function(err){
+                    console.log(err); 
+                }
+
+
+             })
             });
+
+            
+        
+        
+        });
     </script>

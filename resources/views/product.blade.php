@@ -13,6 +13,7 @@
     <title>ajax crud</title>
   </head>
   <body>
+  @include('navbar')   
    <div class="container">
     <div class="row">
         <div class="col-lg-2"></div>
@@ -59,8 +60,9 @@
     </div>
    </div>
 
-    
+ 
 @include('add_product') 
+@include('add_lead') 
 @include('update_product_modal')  
 @include('product_js')
    
