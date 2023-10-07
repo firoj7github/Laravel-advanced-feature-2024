@@ -8,7 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Lead extends Model
 {
     use HasFactory;
-    public function leadcollection(){
-        return $this->belongsTo(Customer::class, 'customer_id');
-    }
+    
 }

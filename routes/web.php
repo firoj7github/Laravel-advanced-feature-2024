@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\LeadController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Auth;
 
 
 // Route::get('/', function () {
@@ -21,9 +22,14 @@ Route::post('/add-lead',[LeadController::class,'addlead'])->name('lead.add');
 
 // login 
 Route::get('/login',[AuthController::class,'support'])->name('login.form');
-Route::get('/dealer/dashboard',[AuthController::class,'dashboard'])->name('dealer.dashboard');
-Route::get('/admin/dashboard',[AuthController::class,'admindashboard'])->name('admin.dashboard');
+
+
 Route::post('/dealer/login',[AuthController::class,'logincheck'])->name('dealer.login');
 
-
+Route::middleware(['role:1'])->group(function(){
+    Route::get('/dealer/dashboard',[AuthController::class,'dashboard'])->name('dealer.dashboard');
+});
+Route::middleware(['role:2'])->group(function(){
+    Route::get('/admin/dashboard',[AuthController::class,'admindashboard'])->name('admin.dashboard');
+});
 

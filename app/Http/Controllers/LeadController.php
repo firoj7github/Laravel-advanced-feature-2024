@@ -68,8 +68,10 @@ class LeadController extends Controller
 
 
             public function leadcollect(){
-                $leads = Lead::with(['leadcollection']);
-               return $leads;
+                 $leads = Lead::with('leadcollection')->get();
+
+                 return $leads;
+             
 
             }
 
