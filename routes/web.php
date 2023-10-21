@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\LeadController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -22,6 +23,11 @@ Route::post('/add-lead',[LeadController::class,'addlead'])->name('lead.add');
 
 // login 
 Route::get('/login',[AuthController::class,'support'])->name('login.form');
+
+// invoice
+Route::get('/invoice',[InvoiceController::class,'index'])->name('invoice.view');
+Route::post('/invoice/add',[InvoiceController::class,'store'])->name('invoice.store');
+
 
 
 Route::post('/dealer/login',[AuthController::class,'logincheck'])->name('dealer.login');
