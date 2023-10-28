@@ -13,6 +13,31 @@
           <a class="nav-link active" aria-current="page" href="{{route('invoice.view')}}">Invoice</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{route('banner.view')}}">Banner</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{route('favorite.page')}}">Favorite</a>
+        </li>
+        <li class="header-notification">
+                <div class="cart-container">
+                    <div class="cart-icon" onclick="toggleCart()">
+                    <a href="#" id="updateCart"> <i class="fa-solid fa-cart-shopping"></i></a>
+                       
+                        <span class="badge" id="cart-count"></span>
+                    </div>
+                    <div class="cart-content" id="cart-content" style="height: 200px; overflow:auto">
+
+                        
+
+                        <div id="invoice-section">
+                         
+
+                        </div>
+
+                    </div>
+                </div>
+                </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{route('login.form')}}">Login</a>
         </li>
         

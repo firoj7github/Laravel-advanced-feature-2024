@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('banners', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('product_id')->nullable();
-            $table->bigInteger('banner_id')->nullable();
-            $table->bigInteger('user_id')->nullable();
-            $table->tinyInteger('package')->default(0);
-            $table->tinyInteger('status')->default(0);
-            $table->integer('price')->nullable();
+            $table->string('name');
+            $table->integer('price');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('banners');
     }
 };

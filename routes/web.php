@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\LeadController;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,16 @@ Route::get('/login',[AuthController::class,'support'])->name('login.form');
 
 // invoice
 Route::get('/invoice',[InvoiceController::class,'index'])->name('invoice.view');
-Route::post('/invoice/add',[InvoiceController::class,'store'])->name('invoice.store');
+Route::get('/banner',[InvoiceController::class,'show'])->name('banner.view');
+Route::post('/invoice/add',[InvoiceController::class,'invoiceStore'])->name('invoice.store');
+Route::post('/banner/add',[InvoiceController::class,'bannerStore'])->name('banner.store');
+
+
+// favorite
+Route::get('/favorite',[FavoriteController::class,'index'])->name('favorite.page');
+
+// cart item
+Route::get('/cart/items',[InvoiceController::class,'getCartItem'])->name('get.item');
 
 
 

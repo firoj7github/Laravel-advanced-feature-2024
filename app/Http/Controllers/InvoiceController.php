@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Invoice;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -14,6 +15,11 @@ class InvoiceController extends Controller
         
         $products= Product::get();
         return view ('invoice.invoice', compact('products'));
+    }
+    public function show(){
+        
+        $banners= Banner::get();
+        return view ('banner.banner', compact('banners'));
     }
 
     public function storeAll(Request $request, $type) {
@@ -64,7 +70,49 @@ class InvoiceController extends Controller
         Invoice::insert($invoicesToInsert);
     }
     
-    public function store(Request $request) {
+    public function invoiceStore(Request $request) {
         return $this->storeAll($request, 'product');
+    }
+    public function bannerStore(Request $request) {
+        return $this->storeAll($request, 'banner');
+    }
+
+
+    public function getCartItem(){
+        $invoices = Invoice::where('status', 0)->get();
+       
+        $html = '';
+    
+        if ($invoices->count() > 0) { 
+            $html .= '<form id="invoice_form_submit">'; 
+            $html .= csrf_field();
+            $html .='<table class="table">';
+            $html .= '<tbody>';
+
+            foreach($invoices as $invoice){
+               
+               
+                $html .= '<tr>';
+
+                if ($invoice->product_id) {
+                  $html .= '<td style="padding: 0px">' .$invoice->price. '</td>';
+                }
+
+
+            $html .='</tr>';
+            }
+            
+            $html .= '</tbody>';
+
+
+            $html .='</table>';
+           
+            
+    
+            $html .= '</form>';
+        }
+        return response()->json(['status' => 'success', 'data' => $html]);
+    
+      
     }
 }

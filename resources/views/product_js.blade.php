@@ -12,8 +12,61 @@
     </script>
 
     <script>
-        $(document).ready(function () {
-             $(document).on('click', '.add_product', function(e){
+
+let cartContent = document.getElementById("cart-content");
+ let content = document.getElementById("invoice-section");
+let cartCount = document.getElementById("cart-count");
+let itemCount = 0;
+
+function toggleCart() {
+    cartContent.style.display = cartContent.style.display === "block" ? "none" : "block";
+
+
+}
+
+function addToCart(item) {
+
+let cartItem = document.createElement("div");
+cartItem.textContent = item;
+cartContent.appendChild(cartItem);
+itemCount++;
+cartCount.textContent = itemCount;
+
+
+}
+
+
+
+
+$(document).ready(function () {
+             
+   // cart item get
+   
+   $('#updateCart').on('click', function(){
+    
+    
+    $.ajax({
+        url:"{{route('get.item')}}",
+        method:'GET',
+        success:function(res){
+            console.log(res);
+          
+            if(res.status == 'success'){
+            $('#invoice-section').html(res.data);
+                
+            };
+        },
+    });
+   });
+    
+    
+    
+    
+    
+    
+    
+    
+    $(document).on('click', '.add_product', function(e){
                e.preventDefault();
                let name= $('#name').val();
                let price= $('#price').val();
