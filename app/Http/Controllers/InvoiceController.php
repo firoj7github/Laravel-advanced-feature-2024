@@ -86,7 +86,7 @@ class InvoiceController extends Controller
         if ($invoices->count() > 0) { 
             $html .= '<form id="invoice_form_submit">'; 
             $html .= csrf_field();
-            $html .='<table class="table">';
+            $html .='<table class="table table-striped">';
             $html .= '<tbody>';
 
             foreach($invoices as $invoice){
@@ -95,7 +95,15 @@ class InvoiceController extends Controller
                 $html .= '<tr>';
 
                 if ($invoice->product_id) {
-                  $html .= '<td style="padding: 0px">' .$invoice->price. '</td>';
+                  $html .= '<td style="padding: 4px">' .$invoice->product->name . '</td>';
+                  $html .= '<td style="padding: 0px"><input type="hidden" name="banner_ids[]" value="' . $invoice->product_id . '"></td>';
+                  $html .='<td style="padding: 4px" ><a href="#" class="deletwCart" data-id= "' .$invoice->product_id . '"><i class="fa fa-trash btn btn-sm btn-danger"></i></a></td>';
+                }
+
+                if($invoice->banner_id){
+                    $html .= '<td style="padding: 4px">' . $invoice->banner->name .  '</td>';
+                    $html .= '<td style="padding: 0px"><input type="hidden" name="banner_ids[]" value="' . $invoice->banner_id . '"></td>';
+                    $html .= '<td style="padding: 4px"><a class="deletwCart" data-id="' .$invoice->product_id . '"><i class="fa fa-trash btn btn-sm btn-danger"></i></a></td>';
                 }
 
 
@@ -111,7 +119,7 @@ class InvoiceController extends Controller
     
             $html .= '</form>';
         }
-        return response()->json(['status' => 'success', 'data' => $html]);
+        return response()->json(['status' => 'success', 'data' => $html, 'count'=>count($invoices)]);
     
       
     }
