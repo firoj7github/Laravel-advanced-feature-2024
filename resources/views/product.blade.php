@@ -95,7 +95,7 @@
       <td>{{$product->name}}</td>
       <td>{{$product->price}}</td>
       <td>
-        <button data-bs-toggle="modal" data-bs-target="#updateModal"
+        <button data-bs-toggle="modal" data-bs-target="#updateProductModal"
         data-id="{{$product->id}}"
         data-name="{{$product->name}}"
         data-price="{{$product->price}}"

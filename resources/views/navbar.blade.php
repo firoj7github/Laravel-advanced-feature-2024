@@ -24,7 +24,7 @@
                     <a href="#" id="updateCart"> <i class="fa-solid fa-cart-shopping"></i></a>
                        
                         <span class="badge" id="cart-count">
-                          {{ (isset($invoices))? count($invoices) : ''}}
+                          0
                         </span>
                     </div>
                     <div class="cart-content" id="cart-content" style="height: 200px; overflow:auto">

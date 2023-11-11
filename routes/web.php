@@ -27,6 +27,7 @@ Route::get('/login',[AuthController::class,'support'])->name('login.form');
 
 // invoice
 Route::get('/invoice',[InvoiceController::class,'index'])->name('invoice.view');
+Route::post('/invoice/show',[InvoiceController::class,'invioce'])->name('show.invoice');
 Route::get('/banner',[InvoiceController::class,'show'])->name('banner.view');
 Route::post('/invoice/add',[InvoiceController::class,'invoiceStore'])->name('invoice.store');
 Route::post('/banner/add',[InvoiceController::class,'bannerStore'])->name('banner.store');

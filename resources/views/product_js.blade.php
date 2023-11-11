@@ -52,6 +52,8 @@ $(document).ready(function () {
             console.log(res);
           
             if(res.status == 'success'){
+                var count = res.count;
+                $('#cart-count').text(count);
             $('#invoice-section').html(res.data);
                 
             };
