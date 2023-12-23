@@ -8,10 +8,11 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    
    
   </head>
   <body>
+
   @foreach($products as $product)
   <div class="card mb-3 mt-5 ms-5" style="width: 18rem;">
   <div class="card-body">
@@ -19,8 +20,9 @@
     <h5 class="card-title">Card title</h5>
     <h6 class="card-subtitle mb-2 text-muted">{{$product->name}}</h6>
     <p class="card-text">{{$product->price}}</p>
-    <i class="fa fa-heart"></i>
-    
+    <i class="fa fa-heart me-2"></i>
+    <a href="#"  title="Copy Link" id="copyUrlButton"><i class="fa fa-copy icon-icon" ></i>
+    </a>
    
   </div>
 </div>
@@ -28,6 +30,28 @@
 
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+       // copy link code start
+       document.getElementById('copyUrlButton').addEventListener('click',function(){
+            
+            // Get the current URL from the browser's address bar
+            const currentUrl= window.location.href;
+              // Create a temporary input element to hold the URL
+               const tmpInput = document.createElement('input');
+               tmpInput.value = currentUrl;
+               document.body.appendChild(tmpInput);
+
+               // Select the input's value and copy it to the clipboard
+               tmpInput.select();
+               document.execCommand('copy');
+               // Remove the temporary input element
+               document.body.removeChild(tmpInput);
+
+            // Display a message to indicate that the URL has been copied
+            alert('The URL has been copied to the clipboard.');
+        })
+        // copy link code end
+    </script>
 
     
   </body>

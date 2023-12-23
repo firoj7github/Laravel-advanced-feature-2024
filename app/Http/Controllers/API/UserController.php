@@ -4,10 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Mail\HelloMail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -67,6 +69,11 @@ class UserController extends Controller
           //   return $buyer;
           //   $token = $user->createToken($user->email)->accessToken;
             return response()->json(['status'=>true,'message'=>'Login  Successfull','user'=>$user]);
+            $data=[
+                'message'=>'hello brother'
+              ];
+      
+              Mail::to($request->email)->send(new HelloMail($data));
         }
 
      //    elseif (Auth::attempt(['email'=>$request->email,'password'=>$request->password]))

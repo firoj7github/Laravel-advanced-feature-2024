@@ -8,10 +8,53 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
 
+.cart-container {
+    position: relative;
+
+}
+
+.cart-icon {
+    cursor: pointer;
+    position: relative;
+    margin-top: 10px;
+    color: orangered;
+}
+
+.cart-icon img {
+    width: 30px;
+}
+
+.badge {
+    position: absolute;
+    top: 0;
+    right: 200;
+    background-color: red;
+    color: white;
+    padding: 5px 8px;
+    border-radius: 50%;
+}
+
+.cart-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 500px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1;
+}
+
+    </style>
    
   </head>
   <body>
+  @include('navbar')   
+  
   <div class="page-content-tab">
 
 <div class="container-fluid" id="contentToConvert">
