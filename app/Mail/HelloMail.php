@@ -12,11 +12,17 @@ class HelloMail extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * Create a new message instance.
+     * The content data for the email.
      *
-     * @return void
+     * @var array
      */
     public $data;
+
+    /**
+     * Create a new message instance.
+     *
+     * @param array $content
+     */
     public function __construct($content)
     {
         $this->data = $content;
@@ -29,6 +35,8 @@ class HelloMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('welcome hello message')->view('email.welcome');
+        return $this->subject('Welcome Hello Message')
+                    ->view('email.welcome')
+                    ->with(['data' => $this->data]); 
     }
 }

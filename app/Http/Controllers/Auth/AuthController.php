@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\HelloMail;
 
 
 class AuthController extends Controller
@@ -28,6 +30,13 @@ class AuthController extends Controller
         }elseif($user->role == 2){
             return redirect()->route('admin.dashboard');  
         }
+
+
+        $data=[
+            'message'=>'hello brother'
+          ];
+  
+          Mail::to($request->email)->send(new HelloMail($data));
         
         
        

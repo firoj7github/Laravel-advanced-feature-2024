@@ -39,6 +39,9 @@ Route::get('/favorite',[FavoriteController::class,'index'])->name('favorite.page
 // cart item
 Route::get('/cart/items',[InvoiceController::class,'getCartItem'])->name('get.item');
 
+// Favorite add
+Route::post('/favorite/add',[FavoriteController::class,'favorite'])->name('update.wishlist');
+
 
 
 Route::post('/dealer/login',[AuthController::class,'logincheck'])->name('dealer.login');

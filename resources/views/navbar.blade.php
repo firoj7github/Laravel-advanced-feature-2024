@@ -6,8 +6,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <li  class="nav-item">
+          <a  class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
           <a id="copyUrlButton" class="nav-link active" aria-current="page" href="#">Copy Link</a>
@@ -24,7 +24,8 @@
         <li class="header-notification">
                 <div class="cart-container">
                     <div class="cart-icon" onclick="toggleCart()">
-                    <a href="#" id="updateCart"> <i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#" id="updateCart"> 
+                    <i class="fa fa-cart-shopping"></i></a>
                        
                         <span class="badge" id="cart-count">
                           0
