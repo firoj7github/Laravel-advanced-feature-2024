@@ -19,6 +19,7 @@ class FavoriteController extends Controller
         // return $request->all();
 
         if($request->ajax()){
+            
             $data = $request->all();
             $countFavorite = Favorite::countFavorite($data['product_id']);
             $favorite = new Favorite();
@@ -28,6 +29,7 @@ class FavoriteController extends Controller
                 $favorite->user_id = $data['user_id'];
                 $favorite->save();
                 return response()->json([
+                    'action'=>'add',
                     'status'=>'success',
                     'message'=>'Successfully added to favorite'
                 ]); 

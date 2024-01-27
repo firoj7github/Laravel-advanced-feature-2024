@@ -9,9 +9,7 @@
         <li  class="nav-item">
           <a  class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
-        <li class="nav-item">
-          <a id="copyUrlButton" class="nav-link active" aria-current="page" href="#">Copy Link</a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{route('invoice.view')}}">Invoice</a>
         </li>

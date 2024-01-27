@@ -23,28 +23,24 @@
     <h6 class="card-subtitle mb-2 text-muted">{{$product->name}}</h6>
     <p class="card-text">{{$product->price}}</p>
 
-    @php 
+    <!-- @php
     $countFavorite = 0;
-    @endphp
-    @if(Auth::check())
 
-    @php
+    if(Auth::check()) {
+        $countFavorite = App\Models\Favorite::countFavorite($product->id);
+    }
+   @endphp -->
 
-    $countFavorite = App\Models\Favorite::countFavorite($product->id);
-    
+<a href="#" data-productid="{{ $product->id }}" class="update_wishlist">
+    <i style="color:black" id="wishlist-icon" class="fa fa-heart me-2"></i>
 
-    @endphp
-
-    @endif
-    <a href="#" data-productid="{{ $product->id }}" class="update_wishlist">
-
-    <i style="color:black" class="fa fa-heart me-2"></i>
     <!-- @if($countFavorite > 0)
-        <i style="color:red" class="fa fa-heart me-2"></i>
+        <i style="color:red" id="wishlist-icon" class="fa fa-heart me-2"></i>
     @else
-        <i style="color:black" class="fa fa-heart me-2"></i>
+        <i style="color:black" id="wishlist-icon" class="fa fa-heart me-2"></i>
     @endif -->
 </a>
+
 
    
     <a href="#"  title="Copy Link" id="copyUrlButton"><i class="fa fa-copy icon-icon" ></i>
@@ -115,18 +111,18 @@
                   console.log(response);
                     // Handle success response
                     // Uncomment and modify the code as needed
-                    // var icon = $('#wishlist-icon');
-                    // if (response.action === 'add') {
-                    //     $('a[data-productid=' + inventory_id + ']').html(
-                    //         `<i class="fa fa-heart" id="wishlist-icon" title="Wishlist" style="color:red"></i>`
-                    //     );
-                    //     toastr.success(response.message);
-                    // } else if (response.action === 'remove') {
-                    //     $('a[data-productid=' + inventory_id + ']').html(
-                    //         `<i class="fa fa-heart-o" id="wishlist-icon" title="Wishlist" ></i>`
-                    //     );
-                    //     toastr.error(response.message);
-                    // }
+                    var icon = $('#wishlist-icon');
+                    if (response.action === 'add') {
+                        $('a[data-productid=' + product_id + ']').html(
+                            `<i class="fa fa-heart" id="wishlist-icon" title="Wishlist" style="color:red"></i>`
+                        );
+                        toastr.success(response.message);
+                    } else if (response.action === 'remove') {
+                        $('a[data-productid=' + product_id + ']').html(
+                            `<i style="color:black" class="fa fa-heart" id="wishlist-icon" title="Wishlist" ></i>`
+                        );
+                        toastr.error(response.message);
+                    }
                 },
                 error: function(error) {
                     // Handle error here
